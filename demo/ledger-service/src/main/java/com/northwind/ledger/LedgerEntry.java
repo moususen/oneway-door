@@ -1,7 +1,5 @@
 package com.northwind.ledger;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -29,8 +27,9 @@ public class LedgerEntry {
     @Column(nullable = false, length = 3)
     private String currency;
 
-    @Column(nullable = false, precision = 12, scale = 2)
-    private BigDecimal amount;
+    /** Amount in minor units (pence). The legacy amount column is filled by a trigger until it is dropped. */
+    @Column(name = "amount_minor", nullable = false)
+    private long amountMinor;
 
     @Column(name = "settled_at", nullable = false)
     private Instant settledAt;
@@ -46,7 +45,11 @@ public class LedgerEntry {
         entry.paymentId = event.paymentId();
         entry.merchantId = event.merchantId();
         entry.currency = event.currency();
-        entry.amount = BigDecimal.valueOf(event.amount()).setScale(2, RoundingMode.HALF_UP);
+        if (event.amountMinor() == null) {
+            // Fail loudly (the record goes to the dead-letter topic) rather than book £0.00.
+            throw new IllegalArgumentException("PaymentSettled " + event.paymentId() + " has no amountMinor");
+        }
+        entry.amountMinor = event.amountMinor();
         entry.settledAt = event.settledAt();
         entry.bookedAt = bookedAt;
         return entry;
@@ -68,8 +71,8 @@ public class LedgerEntry {
         return currency;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public long getAmountMinor() {
+        return amountMinor;
     }
 
     public Instant getSettledAt() {
