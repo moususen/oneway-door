@@ -17,10 +17,10 @@ public final class Reconcile {
         String url = env("DB_URL", "jdbc:postgresql://localhost:5432/ledger");
         try (Connection db = DriverManager.getConnection(url, env("DB_USER", "northwind"), env("DB_PASSWORD", "northwind"));
              Statement st = db.createStatement();
-             ResultSet rs = st.executeQuery("SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM ledger_entries")) {
+             ResultSet rs = st.executeQuery("SELECT COUNT(*), COALESCE(SUM(amount_minor), 0) FROM ledger_entries")) {
             rs.next();
             long entries = rs.getLong(1);
-            BigDecimal total = rs.getBigDecimal(2).setScale(2);
+            BigDecimal total = BigDecimal.valueOf(rs.getLong(2), 2);
             System.out.printf("Reconciliation: %d ledger entries, total £%s%n", entries, total.toPlainString());
             System.out.printf("RECON entries=%d total=%s%n", entries, total.toPlainString());
         } catch (SQLException e) {
