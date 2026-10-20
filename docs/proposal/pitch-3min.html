@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>One-Way Door: three-minute pitch</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  :root {
+    --text: #1F1F1F; --muted: #5A5A5A; --line: #D8D8D8; --grey: #F3F3F1; --white: #FFFFFF; --black: #000000;
+    --green-bright: #11B67A; --green: #006A4D; --green-deep: #024731; --mint: #C7FFC6; --mint-2: #E6FBE8;
+    --lilac: #E4E3FF; --lilac-d: #4A47B8; --aqua: #D6F3F1; --aqua-d: #0E6B66; --orange: #FFE3CC; --orange-d: #8A4300;
+    --orange-b: #F07F2D; --pink: #FCE3FB; --pink-d: #8A1C4A; --red: #B00000; --red-l: #FDECEC; --yellow: #FFF6D6;
+    --head: 'GT Ultra Median', 'Source Serif 4', Georgia, serif;
+    --body: 'GT Ultra Standard', 'Source Sans 3', Arial, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; background: #BBBBBB; }
+  body { font-family: var(--body); color: var(--text); font-size: 17px; line-height: 1.38; }
+  .slide { width: 1280px; height: 720px; position: relative; overflow: hidden; background: var(--white);
+           break-after: page; page-break-after: always; }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  h1, h2, h3 { font-family: var(--head); margin: 0; font-weight: 700; color: var(--black); }
+  h1 { font-size: 38px; line-height: 1.1; margin-bottom: 10px; }
+  h3 { font-size: 20px; line-height: 1.2; margin-bottom: 6px; }
+  p { margin: 0 0 8px; }
+  b { font-weight: 700; }
+  .mono, code { font-family: var(--mono); font-size: 0.86em; }
+  code { white-space: nowrap; }
+
+  /* chrome */
+  .bar { position: absolute; top: 0; left: 0; right: 0; height: 44px; background: var(--green-bright);
+         display: flex; align-items: center; justify-content: space-between; padding: 0 48px; }
+  .wm { font-family: var(--head); font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+  .wm i { display: inline-block; width: 13px; height: 19px; border: 3.4px solid #000; border-bottom: 0; border-radius: 9px 9px 0 0; }
+  .sec { font-size: 13.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+  .sec span { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #000; display: inline-block; }
+  .content { position: absolute; top: 44px; left: 0; right: 0; bottom: 40px; padding: 26px 48px 0; }
+  .foot { position: absolute; bottom: 0; left: 0; right: 0; height: 40px; display: flex; justify-content: space-between;
+          align-items: center; padding: 0 48px; font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); }
+  .kicker { font-size: 13.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+  .lead { font-size: 19px; color: #333; max-width: 1060px; margin-bottom: 16px; }
+  .small { font-size: 13.5px; color: var(--muted); }
+
+  /* building blocks */
+  .row { display: flex; gap: 18px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .grid2 > *, .grid3 > *, .grid4 > *, .row > * { min-width: 0; }
+  .card { border-radius: 18px; padding: 16px 18px; }
+  .card p, .card li { font-size: 15.5px; }
+  .card ul { margin: 0; padding-left: 20px; }
+  .card li { margin-bottom: 4px; }
+  .c-mint { background: var(--mint); } .c-lilac { background: var(--lilac); } .c-aqua { background: var(--aqua); }
+  .c-orange { background: var(--orange); } .c-pink { background: var(--pink); } .c-grey { background: var(--grey); }
+  .c-yellow { background: var(--yellow); } .c-red { background: var(--red-l); } .c-white { background: #fff; border: 1.5px solid var(--line); }
+  .c-deep { background: var(--green-deep); color: #fff; } .c-deep h3 { color: var(--mint); } .c-deep p, .c-deep li { color: #E6F5EE; }
+  .c-black { background: #111; color: #EEE; } .c-black h3 { color: var(--green-bright); }
+  .num { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: #000; color: #fff; font-weight: 800;
+         align-items: center; justify-content: center; font-size: 15px; margin-right: 8px; flex: none; }
+  .tag { display: inline-block; font-size: 12.5px; font-weight: 800; padding: 3px 10px; border-radius: 20px; background: #000; color: #fff; }
+  .tag.g { background: var(--green-bright); color: #000; } .tag.o { background: var(--orange-b); color: #000; }
+  .tag.r { background: var(--red); } .tag.l { background: var(--lilac-d); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chips span { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: #fff; border: 1.5px solid #000; }
+  .code { background: #0E1512; color: #E6F5EE; font-family: var(--mono); font-size: 13.2px; line-height: 1.55; border-radius: 12px;
+          padding: 12px 14px; white-space: pre; overflow: hidden; }
+  .code .c { color: #8FA39A; } .code .k { color: #7CF0B7; } .code .s { color: #FFB16A; } .code .x { color: #FF8A8A; }
+  .code .hl { background: #2B4A3D; border-radius: 4px; }
+  .err { font-family: var(--mono); font-size: 12.6px; line-height: 1.4; background: #2B0D0D; color: #FFB4B4; border-radius: 9px; padding: 7px 9px; }
+  .ok { font-family: var(--mono); font-size: 12.6px; background: #0D2B1E; color: #9DF5C8; border-radius: 9px; padding: 7px 9px; }
+
+  /* characters */
+  .av { width: 84px; height: 84px; border-radius: 50%; overflow: hidden; flex: none; border: 3px solid #fff;
+        box-shadow: 0 0 0 2px #000; background: var(--mint); }
+  .av img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; }
+  .av.s { width: 58px; height: 58px; } .av.xs { width: 44px; height: 44px; border-width: 2px; }
+  .av.lg { width: 120px; height: 120px; }
+  .bg-priya { background: var(--mint); } .bg-tom { background: var(--lilac); } .bg-sam { background: var(--aqua); }
+  .bg-grace { background: var(--orange); } .bg-dev { background: var(--pink); } .bg-hinge { background: var(--yellow); }
+  .bubble { position: relative; background: #fff; border: 2px solid #000; border-radius: 14px; padding: 7px 12px;
+            font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .bubble.l::before { content: ''; position: absolute; left: -11px; top: 14px; border-width: 8px 11px 8px 0; border-style: solid;
+                      border-color: transparent #000 transparent transparent; }
+  .bubble.l::after { content: ''; position: absolute; left: -7px; top: 16px; border-width: 6px 8px 6px 0; border-style: solid;
+                     border-color: transparent #fff transparent transparent; }
+  .bubble.u::before { content: ''; position: absolute; left: 22px; top: -11px; border-width: 0 8px 11px 8px; border-style: solid;
+                      border-color: transparent transparent #000 transparent; }
+  .bubble.u::after { content: ''; position: absolute; left: 24px; top: -7px; border-width: 0 6px 8px 6px; border-style: solid;
+                     border-color: transparent transparent #fff transparent; }
+  .who { display: flex; align-items: center; gap: 14px; }
+  .who .name { font-family: var(--head); font-weight: 700; font-size: 19px; }
+  .who .role { font-size: 13.5px; color: var(--muted); font-weight: 600; }
+
+  /* timeline */
+  .tl { display: grid; gap: 14px; }
+  .tcard { border-radius: 18px; padding: 14px 15px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .time { font-family: var(--mono); font-weight: 600; background: #000; color: #fff; border-radius: 20px; padding: 2px 11px;
+          font-size: 15px; align-self: flex-start; }
+  .tcard h3 { font-size: 18.5px; margin: 0; }
+  .tcard p { font-size: 14.6px; margin: 0; }
+  .arrow { font-size: 30px; font-weight: 800; color: var(--green); display: flex; align-items: center; }
+
+  /* tables */
+  table.t { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.t th { text-align: left; background: #000; color: #fff; padding: 7px 9px; font-size: 13px; }
+  table.t td { padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.m { border-collapse: separate; border-spacing: 5px; width: 100%; font-size: 13px; }
+  table.m th { font-size: 12px; color: var(--muted); font-weight: 700; text-align: center; padding: 0 2px; }
+  table.m td { text-align: center; border-radius: 8px; padding: 6px 2px; font-weight: 800; }
+  table.m td.n { white-space: nowrap; text-align: left; font-family: var(--mono); font-weight: 600; font-size: 13px; background: none; padding-left: 0; }
+  table.m td.p { background: #C9F5D9; color: var(--green); } table.m td.f { background: #FDDADA; color: var(--red); }
+  table.m td small { display: block; font-size: 11px; font-weight: 600; }
+  table.m td.res { color: #fff; background: var(--green-bright); } table.m td.resf { color: #fff; background: var(--red); }
+
+  .shot { border-radius: 12px; overflow: hidden; border: 1.5px solid #000; display: block; }
+  .shot img { display: block; width: 100%; }
+  .cap { font-size: 13.5px; color: var(--muted); margin-top: 6px; }
+  .cap b { color: var(--text); }
+  .big { font-family: var(--head); font-weight: 700; }
+  .hero-n { font-family: var(--head); font-weight: 700; line-height: .95; }
+  .time { position: absolute; top: 58px; right: 48px; font-family: var(--mono); font-size: 13px; font-weight: 600;
+          background: #000; color: #fff; border-radius: 20px; padding: 3px 12px; z-index: 5; }
+  .flow { display: flex; align-items: stretch; gap: 8px; }
+  .flow .st { flex: 1; border-radius: 16px; padding: 12px 12px; font-weight: 800; font-size: 16px; line-height: 1.2; }
+  .flow .st small { display: block; font-weight: 500; font-size: 13px; margin-top: 4px; opacity: .85; }
+  .flow .ar { display: flex; align-items: center; font-size: 26px; font-weight: 800; color: var(--green); }
+  .kind { border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+  .kind .ic { width: 44px; height: 44px; border-radius: 12px; background: #fff; border: 2px solid #000; display: flex;
+              align-items: center; justify-content: center; font-family: var(--head); font-weight: 700; font-size: 22px; }
+  .kind b { font-family: var(--head); font-size: 19px; }
+  .kind p { margin: 0; font-size: 14.5px; line-height: 1.32; }
+  .kind p.bad { color: var(--red); font-weight: 700; }
+  .bignum { font-family: var(--head); font-weight: 700; font-size: 58px; line-height: 1; color: #FF6B6B; }
+  .cap4 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cap4 > div { border-radius: 16px; padding: 12px 14px; }
+  .cap4 b { font-family: var(--head); font-size: 18px; display: block; margin-bottom: 3px; }
+  .cap4 p { margin: 0; font-size: 14.5px; line-height: 1.32; }
+  .verdict { background: #fff; border: 2px solid #000; border-radius: 18px; padding: 14px 16px; box-shadow: 8px 8px 0 var(--green-bright); }
+  .verdict .hd { font-size: 12.5px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 8px; }
+  .verdict li { font-size: 14px; line-height: 1.32; margin-bottom: 4px; }
+  .concept { border-radius: 20px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .concept h3 { font-size: 22px; margin: 0; }
+  .concept p { margin: 0; font-size: 15px; line-height: 1.35; }
+  .doorpair { display: flex; gap: 14px; align-items: flex-end; }
+  .doorpair .d { width: 46px; height: 64px; border-radius: 23px 23px 0 0; border: 3px solid #000; position: relative; }
+  .doorpair span { font-size: 26px; font-weight: 800; }
+  .tline { position: relative; height: 34px; margin: 4px 0 2px; }
+  .tline .bar { position: absolute; left: 0; right: 0; top: 15px; height: 4px; background: #000; border-radius: 2px; }
+  .tline .ok { position: absolute; left: 0; width: 46%; top: 13px; height: 8px; background: var(--green-bright); border-radius: 4px; }
+  .tline .x { position: absolute; left: 46%; right: 0; top: 13px; height: 8px; background: var(--red); border-radius: 4px; }
+  .tline .pin { position: absolute; left: calc(46% - 14px); top: 0; width: 28px; height: 28px; border-radius: 50%; background: #fff;
+                border: 3px solid #000; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .ripple { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .ripple i { display: block; border-radius: 50%; border: 3px solid var(--lilac-d); }
+  .steps4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .steps4 div { border-radius: 10px; padding: 7px 6px; text-align: center; font-weight: 800; font-size: 13.5px; border: 2px solid #000; }
+  .steps4 small { display: block; font-weight: 500; font-size: 11.5px; }
+  .tile { border-radius: 18px; padding: 14px 16px; }
+  .tile h3 { font-size: 19px; margin: 0 0 8px; }
+  .tile ul { margin: 0; padding-left: 18px; } .tile li { font-size: 14.5px; line-height: 1.32; margin-bottom: 4px; }
+  .face2 { display: flex; gap: 6px; }
+</style>
+</head>
+<body>
+<section class="slide" style="background:var(--green-deep)">
+  <img class="bleed" src="images/deck/cover-doors.jpg" alt="A developer at a fork: a door that swings both ways and one that only goes forward"
+       style="position:absolute;right:0;top:0;width:640px;height:720px;object-fit:cover;object-position:52% 50%">
+  <div class="bleed" style="position:absolute;right:0;top:0;width:640px;height:720px;background:linear-gradient(90deg,var(--green-deep) 0%,rgba(2,71,49,0) 22%)"></div>
+  <div style="position:absolute;left:56px;top:48px;width:620px;color:#fff;display:flex;flex-direction:column;height:624px">
+    <div class="wm" style="color:#fff;font-size:20px"><i style="border-color:#fff"></i>One-Way Door</div>
+    <div style="margin-top:60px">
+      <div class="kicker" style="color:var(--green-bright);font-size:15px">A GitHub Copilot skill · 0:00–0:30</div>
+      <h1 style="color:#fff;font-size:58px;line-height:1.04;margin:10px 0 22px">Every merge is a&nbsp;door.<br><span style="color:var(--green-bright)">Some only open one way.</span></h1>
+      <p style="font-size:21px;color:#CFEFDF;max-width:560px;line-height:1.4">Before you merge, One-Way Door answers the question no pipeline asks:</p>
+      <div class="bubble" style="color:#000;font-size:24px;max-width:580px;margin-top:6px;padding:14px 18px;line-height:1.3">“If this goes wrong after deploy, can we actually roll back?”</div>
+    </div>
+    <div style="margin-top:auto;display:flex;gap:10px">
+      <span class="tag" style="background:var(--aqua-d);font-size:15px;padding:7px 14px">⇄ Two-way door: roll back any time</span>
+      <span class="tag o" style="font-size:15px;padding:7px 14px">→ One-way door: no way back</span>
+    </div>
+  </div>
+  <img class="bleed" src="images/deck/door-mascot.png" alt="" style="position:absolute;right:30px;bottom:20px;width:150px">
+</section>
+<section class="slide">
+<div class="bar"><div class="wm"><i></i>One-Way Door</div><div class="sec"><span style="background:#E5484D"></span>The problem · 0:30–1:10</div></div>
+<div class="content"><div class="z" style="zoom:1.07">
+
+  <div class="kicker">The problem</div>
+  <h1 style="font-size:42px">Rollback is the safety net nobody tests</h1>
+  <div class="flow" style="margin:14px 0 18px">
+    <div class="st" style="background:var(--grey)">Release ships<small>changes a table, an event or a format</small></div><div class="ar">›</div>
+    <div class="st" style="background:var(--mint)">New state is written<small>rows migrated, events published</small></div><div class="ar">›</div>
+    <div class="st" style="background:var(--orange)">Something breaks<small>the plan: roll back</small></div><div class="ar">›</div>
+    <div class="st" style="background:#111;color:#fff">Code goes back<small>the data stays</small></div><div class="ar">›</div>
+    <div class="st" style="background:var(--red);color:#fff">Old code, new state<small>won't start, or silently wrong</small></div>
+  </div>
+  <div class="row" style="gap:18px;align-items:stretch">
+    <div class="grid2" style="flex:1.3;gap:12px">
+      <div class="kind c-lilac"><div class="ic">D</div><b>Databases</b><p>Column renamed or converted in place.</p><p class="bad">Old code won't start.</p></div>
+      <div class="kind c-aqua"><div class="ic">E</div><b>Events</b><p>A field removed or its units changed.</p><p class="bad">Old reader sees zero, silently.</p></div>
+      <div class="kind c-orange"><div class="ic">C</div><b>Caches and keys</b><p>Entries written in a new format.</p><p class="bad">Misses, or work done twice.</p></div>
+      <div class="kind c-pink"><div class="ic">X</div><b>External contracts</b><p>Webhooks sent in a new shape.</p><p class="bad">Can't be recalled.</p></div>
+    </div>
+    <div style="flex:1;position:relative;border-radius:20px;overflow:hidden;border:2px solid #000">
+      <img src="images/deck/zero-receipt.jpg" alt="Green dashboards beside a receipt full of £0.00" style="width:100%;height:100%;object-fit:cover">
+      <div style="position:absolute;left:12px;right:12px;bottom:12px;background:rgba(0,0,0,.8);border-radius:14px;padding:12px 14px;color:#fff">
+        <div class="bignum">£12,708</div>
+        <div style="font-size:15px;font-weight:700;margin-top:4px">missing after one rollback. 50 settlements at £0.00. Every dashboard green.</div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:17px;margin-top:14px"><b>Why it gets through:</b> tests, CI, migration tools, code review and monitoring all look <b>forward</b>. None of them runs the old code against the new data.</p>
+
+</div></div>
+<div class="foot"><span>One-Way Door · a GitHub Copilot skill</span><span>Northwind Payments and its people are invented</span><span>2 / 5</span></div>
+</section>
+<section class="slide">
+<div class="bar"><div class="wm"><i></i>One-Way Door</div><div class="sec"><span style="background:#11B67A"></span>The skill · 1:10–1:50</div></div>
+<div class="content"><div class="z" style="zoom:1.13">
+
+  <div class="row" style="gap:26px;align-items:flex-start">
+    <div style="flex:1.05">
+      <div class="kicker">The solution</div>
+      <h1 style="font-size:40px">One folder that makes Copilot ask first</h1>
+      <p style="font-size:17px;margin-bottom:14px"><code>.github/skills/one-way-door</code> loads when a PR touches a migration or an event, or someone asks “can we roll back?”.</p>
+      <div class="cap4">
+        <div class="c-mint"><b><span class="num">1</span>Classify</b><p>Each change: two-way or one-way.</p></div>
+        <div class="c-aqua"><b><span class="num">2</span>Time it</b><p>When the door closes, what breaks, the safe window.</p></div>
+        <div class="c-lilac"><b><span class="num">3</span>Blast radius</b><p>Who else reads the data, even outside the PR.</p></div>
+        <div class="c-orange"><b><span class="num">4</span>Split it</b><p>Expand → migrate → contract → drop, generated on request.</p></div>
+      </div>
+      <div class="flow" style="margin-top:16px">
+        <div class="st" style="background:var(--aqua);font-size:15px">Scripts check<small>offline, deterministic, JSON</small></div><div class="ar">+</div>
+        <div class="st" style="background:var(--lilac);font-size:15px">Copilot judges<small>readers, old code vs new state</small></div><div class="ar">=</div>
+        <div class="st" style="background:var(--green-deep);color:#fff;font-size:15px">A verdict<small>as a PR comment</small></div>
+      </div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding-top:6px">
+      <div class="verdict">
+        <div class="hd"><b style="color:#000">GitHub Copilot</b> reviewed PR #482 · used one-way-door</div>
+        <p style="margin:0 0 8px;font-size:15px"><span class="tag r" style="font-size:13px;padding:4px 10px">ONE-WAY</span> &nbsp;Safe rollback window: <b>none</b></p>
+        <ol style="margin:0 0 8px;padding-left:20px">
+          <li>Column renamed and converted in place: the old ledger <b>won't start</b>.</li>
+          <li>Events already on Kafka <b>can't be rolled back</b>.</li>
+          <li>A missing field becomes <b>£0.00, silently</b>.</li></ol>
+        <p style="margin:0;font-size:14px"><b>Blast radius:</b> reconciliation-batch <span style="color:var(--red);font-weight:700">(not in this PR)</span></p>
+        <p style="margin:6px 0 0;font-size:14px"><b>Suggested split:</b> 4 PRs, each reversible.</p>
+      </div>
+      <div class="who"><div class="av s bg-hinge"><img src="images/deck/door-mascot.png" alt=""></div><div class="bubble l" style="font-size:15px">Every prediction matched a real failure in the live demo.</div></div>
+      <div style="border-radius:14px;overflow:hidden;border:2px solid #000"><img src="images/cc-act3-review.png" alt="The live demo's review: each finding beside the real error" style="display:block;width:100%;height:150px;object-fit:cover;object-position:50% 30%"></div>
+    </div>
+  </div>
+
+</div></div>
+<div class="foot"><span>One-Way Door · a GitHub Copilot skill</span><span>Northwind Payments and its people are invented</span><span>3 / 5</span></div>
+</section>
+<section class="slide">
+<div class="bar"><div class="wm"><i></i>One-Way Door</div><div class="sec"><span style="background:#A19FFF"></span>The concepts · 1:50–2:25</div></div>
+<div class="content"><div class="z" style="zoom:1.3">
+
+  <div class="kicker">Four ideas, one vocabulary</div>
+  <h1 style="font-size:42px">How the skill thinks about a change</h1>
+  <div class="grid2" style="gap:16px;margin-top:10px">
+    <div class="concept c-mint">
+      <div class="doorpair"><div class="d" style="background:var(--aqua)"></div><span>⇄</span><div class="d" style="background:var(--orange)"></div><span>→</span></div>
+      <h3>Two-way or one-way door</h3>
+      <p>Two-way: deploy it, roll it back, the old code still works. One-way: it leaves state the old code can't handle.</p>
+    </div>
+    <div class="concept c-orange">
+      <div class="tline"><div class="bar"></div><div class="ok"></div><div class="x"></div><div class="pin" style="width:38px;left:calc(46% - 19px);border-radius:14px">V3</div></div>
+      <h3>When the door closes</h3>
+      <p>The deploy moment after which rollback stops being safe. Here: the 5 ms it takes Flyway to run V3.</p>
+    </div>
+    <div class="concept c-lilac">
+      <div class="ripple" style="height:46px;justify-content:flex-start;gap:10px"><i style="width:18px;height:18px;background:var(--lilac-d)"></i><i style="width:32px;height:32px"></i><i style="width:46px;height:46px;opacity:.6"></i>
+        <span style="font-size:14px;font-weight:700;margin-left:8px">ledger · reconciliation · reports</span></div>
+      <h3>Blast radius</h3>
+      <p>Every reader of the same table, column, topic or field. The one that breaks first is often not in the PR.</p>
+    </div>
+    <div class="concept c-aqua">
+      <div class="steps4">
+        <div style="background:#C7FFC6">1 Expand<small>add the new</small></div><div style="background:#D6F3F1">2 Migrate<small>copy the data</small></div>
+        <div style="background:#E4E3FF">3 Contract<small>switch readers</small></div><div style="background:#FFE3CC">4 Drop<small>remove the old</small></div>
+      </div>
+      <h3>The rollback-safe split</h3>
+      <p>The same change in four deploys. Proven live: <b>4 steps PASS</b> the rollback test; PR #482 <b style="color:var(--red)">FAILS</b> at stage 2.</p>
+    </div>
+  </div>
+
+</div></div>
+<div class="foot"><span>One-Way Door · a GitHub Copilot skill</span><span>Northwind Payments and its people are invented</span><span>4 / 5</span></div>
+</section>
+<section class="slide">
+<div class="bar"><div class="wm"><i></i>One-Way Door</div><div class="sec"><span style="background:#FFB16A"></span>Where it applies · 2:25–3:00</div></div>
+<div class="content"><div class="z" style="zoom:1.22">
+
+  <div class="kicker">Applicability</div>
+  <h1 style="font-size:42px">Anywhere state outlives the code</h1>
+  <div class="grid3" style="gap:14px;margin-top:10px">
+    <div class="tile c-lilac"><h3>What it checks</h3><ul>
+      <li>SQL migrations: Flyway, Liquibase, EF Core</li><li>Event schemas: JSON Schema</li>
+      <li>Caches, idempotency keys, external contracts</li><li>24 one-way patterns, each with a safe split</li></ul></div>
+    <div class="tile c-mint"><h3>Where it runs</h3><ul>
+      <li><b>VS Code</b> agent mode, before you push</li><li><b>Copilot CLI</b></li>
+      <li><b>Cloud agent</b> on the PR</li><li><b>Code review</b> with repository skills</li></ul></div>
+    <div class="tile c-orange"><h3>Who it protects</h3>
+      <div class="face2" style="margin-bottom:8px"><div class="av xs bg-priya"><img src="images/deck/priya.png" alt=""></div><div class="av xs bg-tom"><img src="images/deck/tom.png" alt=""></div><div class="av xs bg-sam"><img src="images/deck/sam.png" alt=""></div><div class="av xs bg-grace"><img src="images/deck/grace.png" alt=""></div></div>
+      <ul><li><b>Authors</b>: fix it before review</li><li><b>Reviewers</b>: see readers outside the diff</li>
+      <li><b>On-call</b>: know if rollback helps</li><li><b>Finance and data</b>: totals that don't drift</li></ul></div>
+  </div>
+  <div class="row" style="gap:14px;margin-top:14px;align-items:stretch">
+    <div class="tile c-grey" style="flex:1"><h3>Adopt it in one step</h3>
+      <div class="code" style="font-size:12.5px">cp -R .github/skills/one-way-door \
+   your-repo/.github/skills/</div>
+      <p style="margin:8px 0 0;font-size:14.5px">Needs git and Node 20+. No servers, no accounts, no network calls.</p></div>
+    <div class="tile c-deep" style="flex:1.15;display:flex;align-items:center;gap:16px">
+      <div style="flex:1"><h3 style="font-size:24px;color:#fff;line-height:1.2">Know before you merge whether you can roll back.</h3>
+        <p style="margin:6px 0 0;font-size:14.5px;color:#CFEFDF">Next: readers in other repositories, with anything it can't see assumed to read the data.</p></div>
+      <img src="images/deck/door-mascot.png" alt="" style="width:92px;flex:none">
+    </div>
+  </div>
+
+</div></div>
+<div class="foot"><span>One-Way Door · a GitHub Copilot skill</span><span>Northwind Payments and its people are invented</span><span>5 / 5</span></div>
+</section>
+<script>
+  window.addEventListener('load', function () {
+    document.fonts.ready.then(function () {
+      var bad = [];
+      document.querySelectorAll('.slide').forEach(function (s, i) {
+        var r = s.getBoundingClientRect(), limit = r.bottom - (s.querySelector('.foot') ? 40 : 0);
+        s.querySelectorAll('.content *, .slide > div *').forEach(function (el) {
+          if (el.closest('.bleed') || el.closest('.foot') || el.closest('.bar')) return;
+          var b = el.getBoundingClientRect();
+          if (!b.width || !b.height) return;
+          var d = b.bottom - limit, rt = b.right - (r.right - 24);
+          if (d > 1 || rt > 1) bad.push((i + 1) + ':' + (el.className || el.tagName) + ':' + Math.ceil(Math.max(d, rt)) + 'px');
+        });
+        s.querySelectorAll('.code').forEach(function (el) { if (el.scrollWidth > el.clientWidth + 1) bad.push((i + 1) + ':clipped code'); });
+      });
+      var u = bad.filter(function (v, k) { return bad.indexOf(v) === k; });
+      document.body.setAttribute('data-overflow', u.length ? u.slice(0, 20).join(' ') : 'none');
+    });
+  });
+</script>
+</body>
+</html>
